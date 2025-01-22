@@ -1,8 +1,10 @@
 const express = require("express");
-const app = express();
-const port = 3000;
 const cors = require("cors");
+const app = express();
 
+
+// 환경 변수에서 포트 가져오기 (기본값 3000)
+const port = process.env.PORT || 3000;
 
 app.use(express.json()); // JSON 데이터 처리
 app.use(cors());
@@ -25,7 +27,7 @@ app.get("/api/tasks", (req, res) => {
   } else if (sortOrder === "completed") {
     filteredTasks.sort((a, b) => a.completed - b.completed);
   }
-  
+
   res.json(filteredTasks);
 });
 
